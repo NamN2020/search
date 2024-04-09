@@ -121,3 +121,5 @@ ucs = uniformCostSearch
 
 
 '''workin?'''
+
+'''is work?'''
