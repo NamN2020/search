@@ -111,16 +111,36 @@ def depthFirstSearch(problem):
                 stack.push((sucState, dir + [sucDir]))
 
     return dir
-
-
-    
     #util.raiseNotDefined()
-    
 
 def breadthFirstSearch(problem):
     """Search the shallowest nodes in the search tree first."""
     "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
+    queue = util.Queue()
+    visited = []
+    
+    # push first vertex onto queue 
+    startState = problem.getStartState()
+    queue.push((startState, []))
+    
+    while not queue.isEmpty():
+        # pop current state and direction off queue 
+        state, dir = queue.pop()
+        
+        # if goal state, return immendiately 
+        if (problem.isGoalState(state)):
+            return dir
+        # if state has not been visited, add to list
+        if state not in visited:
+            visited.append(state)            
+        # iterate and push successors onto queue 
+            for sucState, sucDir, cost in problem.getSuccessors(state):
+                queue.push((sucState, dir + [sucDir]))
+
+    return dir
+        
+    
+    #util.raiseNotDefined()
 
 def uniformCostSearch(problem):
     """Search the node of least total cost first."""
