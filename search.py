@@ -86,33 +86,29 @@ def depthFirstSearch(problem):
     print("Is the start a goal?", problem.isGoalState(problem.getStartState()))
     print("Start's successors:", problem.getSuccessors(problem.getStartState()))
     
-    """
+    
    
-    "*** YOUR CODE HERE ***"
-    print("Start:", problem.getStartState())
-    print("Is the start a goal?", problem.isGoalState(problem.getStartState()))
-    print("Start's successors:", problem.getSuccessors(problem.getStartState()))
-
+    *** YOUR CODE HERE ***"""
     stack = util.Stack()
     visited = []
 
+    # push first vertex onto stack
     startState = problem.getStartState()
-    graphNode = (startState, [])
-    stack.push(graphNode)
+    stack.push((startState, []))
 
-    while stack:
+    while not stack.isEmpty():
+        # pop current state and direction off stack
         state, dir = stack.pop()
-
+        
+        # if goal state, return immendiately 
+        if (problem.isGoalState(state)):
+            return dir
+        # if state has not been visited, add to list
         if state not in visited:
             visited.append(state)            
-
-            if (problem.isGoalState(state)):
-                    return dir
-            else:
-            # successor state, direction, cost
-                for sucState, sucDir, X in problem.getSuccessors(state):
-                    newGraphNode = (sucState, dir + [sucDir])
-                    stack.push(newGraphNode)
+        # iterate and push successors onto stack  
+            for sucState, sucDir, cost in problem.getSuccessors(state):
+                stack.push((sucState, dir + [sucDir]))
 
     return dir
 
