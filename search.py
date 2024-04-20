@@ -189,7 +189,7 @@ def aStarSearch(problem, heuristic=nullHeuristic):
         # if goal state, return immendiately 
         if (problem.isGoalState(state)):
             return dir
-        # if state has not been visited or cost is less than current state, then update cost
+        # if state has not been visited then append to visited list
         if (state not in visited):
             visited.append(state)          
         # iterate and update successors on priority queue 
