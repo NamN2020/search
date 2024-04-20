@@ -93,8 +93,7 @@ def depthFirstSearch(problem):
     visited = []
 
     # push first vertex onto stack
-    startState = problem.getStartState()
-    stack.push((startState, []))
+    stack.push((problem.getStartState(), []))
 
     while not stack.isEmpty():
         # pop current state and direction off stack
@@ -120,8 +119,7 @@ def breadthFirstSearch(problem):
     visited = []
     
     # push first vertex onto queue 
-    startState = problem.getStartState()
-    queue.push((startState, []))
+    queue.push((problem.getStartState(), []))
     
     while not queue.isEmpty():
         # pop current state and direction off queue 
@@ -149,8 +147,7 @@ def uniformCostSearch(problem):
     visited = {} 
     
     # push first vertex onto priority queue 
-    startState = problem.getStartState()
-    prioQueue.push((startState, [], 0), 0)
+    prioQueue.push((problem.getStartState(), [], 0), 0)
     
     while not prioQueue.isEmpty():
         # pop current state and direction off priority queue 
