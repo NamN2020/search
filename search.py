@@ -157,11 +157,12 @@ def uniformCostSearch(problem):
         if (problem.isGoalState(state)):
             return dir
         # if state has not been visited or cost is less than current state, then update cost
-        if (state not in visited) or (cost < visited[state]):
+        if (state not in visited):
             visited[state] = cost            
         # iterate and update successors on priority queue 
             for sucState, sucDir, sucCost in problem.getSuccessors(state):
-                prioQueue.update((sucState, dir + [sucDir], cost + sucCost), cost + sucCost)
+                newCost = cost + sucCost
+                prioQueue.update((sucState, dir + [sucDir], newCost), newCost)
 
     return dir
     #util.raiseNotDefined()
@@ -176,7 +177,31 @@ def nullHeuristic(state, problem=None):
 def aStarSearch(problem, heuristic=nullHeuristic):
     """Search the node that has the lowest combined cost and heuristic first."""
     "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
+    prioQueue = util.PriorityQueue()
+    visited = []
+    
+    prioQueue.push((problem.getStartState(), [], 0), heuristic(problem.getStartState(), problem))
+    
+    while not prioQueue.isEmpty():
+        # pop current state and direction off priority queue 
+        state, dir, cost = prioQueue.pop()
+        
+        # if goal state, return immendiately 
+        if (problem.isGoalState(state)):
+            return dir
+        # if state has not been visited or cost is less than current state, then update cost
+        if (state not in visited):
+            visited.append(state)          
+        # iterate and update successors on priority queue 
+            for sucState, sucDir, sucCost in problem.getSuccessors(state):
+                newCost = cost + sucCost
+        # update priority queue with successor state, new direction, and new cost | update huristic value
+                prioQueue.update((sucState, dir + [sucDir], newCost), (newCost + heuristic(sucState, problem)))
+
+    return dir
+     
+    
+    #util.raiseNotDefined()
 
 
 # Abbreviations
