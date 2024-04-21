@@ -18,3 +18,24 @@ Q4)
 A* Search also uses a PriorityQueue just like the UniformCostSearch, but the main difference is the cost
 calculated from heuristic function. This time when exploring unvisited vertexes, will update the heuristic
 cost of the new state and update the priority queue.
+
+Q5)
+In question 5, we implement the CornersProblem class. First we implement the constructor which initializes
+the start of the problem. Next we complete the getter function "getStartState". As well as "isGoalState" by
+checking if the length of the corners list is equal to 0. Lastly, the "getSuccessors" function returns an
+updated successors list.
+
+Q6)
+X
+
+Q7)
+In this question, we implement the "foodHeuristic" function. Expanding food grid out as a list and then 
+iterating through each position to compute the maze distance for every position. Obtain the max heuristic
+and return it
+
+Q8)
+In the Suboptimal Search we check if isGoalState is true by returning the coordinates of the food, if it
+matches, then will return true, otherwise false. Then we perform a BreadthFirstSearch to search for the goal
+
+
+
