@@ -307,8 +307,7 @@ class CornersProblem(search.SearchProblem):
         """
         "*** YOUR CODE HERE ***"
         return not (len(state[1]))
-        #return (state == self.goal)
-        
+
         #util.raiseNotDefined()
 
     def getSuccessors(self, state):
@@ -332,23 +331,20 @@ class CornersProblem(search.SearchProblem):
             #   hitsWall = self.walls[nextx][nexty]
 
             "*** YOUR CODE HERE ***"
-            x,y = state
+            x,y = state[0]
             dx, dy = Actions.directionToVector(action)
             nextx, nexty = int(x + dx), int(y+ dy)
-            cornersNew = []
-            cornersKnown = state[1]
+            nextState = (nextx, nexty)
+            corners = set(state[1])
             
-            # if not hit wall then continue
+            # if next state is a corner and in 
+            if nextState in corners:
+                corners.remove(nextState)
+            
+            # if not hit wall then append to successors list with new conditions
             if not self.walls[nextx][nexty]:
-                nextState = (nextx, nexty)
+                successors.append( ((nextState, corners), action, 1))
                 
-                for corner in cornersKnown:
-                        cornersNew.append(corner)
-                if nextState not in self.corners:
-                    cornersNew.append(nextState)
-                cost = self.costFn(nextState)
-                successors.append( ( ((nextx, nexty), tuple(cornersNew)), action, 1) )
-
         self._expanded += 1 # DO NOT CHANGE
         return successors
 
@@ -509,7 +505,6 @@ class ClosestDotSearchAgent(SearchAgent):
 
         "*** YOUR CODE HERE ***"
         return search.breadthFirstSearch(problem)
-        #return search.depthFirstSearch(problem)
         #util.raiseNotDefined()
 
 class AnyFoodSearchProblem(PositionSearchProblem):
