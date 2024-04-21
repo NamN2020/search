@@ -491,7 +491,9 @@ def foodHeuristic(state, problem):
     # return max heuristic
     maxHeuristic = 0
     for food in foodPos:
+        # get maze distance using function
         distance = mazeDistance(position, food, problem.startingGameState)    
+        # get max distance out of all distances
         if maxHeuristic < distance:
             maxHeuristic = distance
             
