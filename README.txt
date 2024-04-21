@@ -10,4 +10,11 @@ instead of exploring to the deepest first. To implement this function, we will i
 data structure since it is a First in First Out struture.
 
 Q3)
+UniformCostSearch uses a PriorityQueue instead of a regular Queue like in BFS, because it needs to keep 
+the cost of each state. Also, instead of using a list for visited vertexes, it is replaced by a dictionary
+to keep track of the cost as well. The overall structure of the code if very similiar to DFS and BFS.
 
+Q4)
+A* Search also uses a PriorityQueue just like the UniformCostSearch, but the main difference is the cost
+calculated from heuristic function. This time when exploring unvisited vertexes, will update the heuristic
+cost of the new state and update the priority queue.
