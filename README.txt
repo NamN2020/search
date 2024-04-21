@@ -26,7 +26,8 @@ checking if the length of the corners list is equal to 0. Lastly, the "getSucces
 updated successors list.
 
 Q6)
-X
+Using the function "util.manhattanDistance()", we can add each distance from position to goal in a list,
+then will return the max of the distances.
 
 Q7)
 In this question, we implement the "foodHeuristic" function. Expanding food grid out as a list and then 
